@@ -6,11 +6,11 @@ export interface ItemProps {
     id: number;
     title: string;
     description: string;
-    link?: string;
+    link: string;
     price: string;
 }
 
-const ItemCard: React.FC<ItemProps> = ({ title, description, link, price }) => {
+const ItemCard: React.FC<ItemProps> = ({ title, description, link, price, id }) => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
 
     const toggleDialog = () => setIsDialogOpen(!isDialogOpen);
@@ -24,21 +24,21 @@ const ItemCard: React.FC<ItemProps> = ({ title, description, link, price }) => {
             tabIndex={0}
         >
             {/* Framer Motion Image with fixed height */}
-            <motion.div className="w-full h-45 overflow-hidden"> 
+            <motion.div className="w-full h-45 overflow-hidden">
                 <motion.img
-                    src="https://mrskueh.com/assets/images/atlas-core-active-storage/j5bx6bbznlcyp2atcim99gg59voh"
+                    src={link}
                     alt="Description"
                     className="w-full h-full object-cover"
                     initial={{ scale: 1 }}
-                    whileHover={{ scale: 1.1 }} 
+                    whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.2 }}
                 />
             </motion.div>
 
             <div className="flex flex-col justify-between flex-grow p-4">
                 <h3 className="font-semibold text-lg mb-3">{title}</h3>
-                <p className="flex-grow">{description}</p> 
-                <div className="flex justify-between items-center mt-5"> 
+                <p className="flex-grow">{description}</p>
+                <div className="flex justify-between items-center mt-5">
                     <p>{price}</p>
                     <button
                         onClick={(e) => { e.stopPropagation(); alert("Added!"); }}
@@ -48,12 +48,7 @@ const ItemCard: React.FC<ItemProps> = ({ title, description, link, price }) => {
                     </button>
                 </div>
             </div>
-
-            <ItemDialog isOpen={isDialogOpen} onClose={toggleDialog}>
-                <h2 className="text-xl font-bold">{title}</h2>
-                <p>{description}</p>
-                {link && <a href={link} className="text-blue-500 hover:underline block mt-2">Learn more</a>}
-            </ItemDialog>
+            <ItemDialog isOpen={isDialogOpen} onClose={toggleDialog} item={{ id, title, description, link, price }} />
         </div>
     );
 };
