@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Section from './components/Section';
 
 const menuSections = [
@@ -45,24 +46,26 @@ const menuSections = [
 ];
 
 const App: React.FC = () => {
-  // Function to handle scroll to a section, typed with TypeScript
+  const [activeSection, setActiveSection] = useState<string>(menuSections[0].id);
+
   const scrollToSection = (id: string): void => {
     const section = document.getElementById(id);
     if (section) {
+      setActiveSection(id);
       section.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
     <div className="flex h-screen overflow-hidden">
-      <div className="w-64 overflow-y-auto bg-gray-800 text-white">
+      <div className="pt-10 w-64 overflow-y-auto">
         <nav>
-          <ul>
+          <ul className="pl-5">
             {menuSections.map((section) => (
               <li key={section.id}>
                 <button
                   onClick={() => scrollToSection(section.id)}
-                  className="block hover:bg-gray-700 p-2 rounded w-full text-left"
+                  className={`block p-2 w-full text-left border-l-4 ${activeSection === section.id ? ' border-orange-500' : 'border-grey-100'}`}
                 >
                   {section.label}
                 </button>
@@ -73,14 +76,12 @@ const App: React.FC = () => {
       </div>
       <div className="flex-1 overflow-y-auto">
         {menuSections.map((section) => (
-          <section id={section.id} key={section.id} className="p-10 min-h-screen">
-            {/* Ensure your Section component is typed correctly with TypeScript */}
-            <Section
-              label={section.label}
-              description={section.description}
-              items={section.items}
-            />
-          </section>
+          <Section
+            id={section.id}
+            label={section.label}
+            description={section.description}
+            items={section.items}
+          />
         ))}
       </div>
     </div>
