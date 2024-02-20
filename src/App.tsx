@@ -10,20 +10,30 @@ const menuSections = [
       {
         id: 1,
         title: 'Salmon Teriyaki',
-        content: 'Grilled salmon fillet glazed with a sweet teriyaki sauce, served with steamed rice and vegetables.',
+        description: 'Grilled salmon fillet glazed with a sweet teriyaki sauce, served with steamed rice and vegetables.',
         link: '#salmon-teriyaki',
+        price: '9.99',
       },
       {
         id: 2,
         title: 'Classic Caesar Salad',
-        content: 'Crisp romaine lettuce, parmesan cheese, and croutons, tossed with our homemade Caesar dressing.',
-        link: '#classic-caesar-salad'
+        description: 'Crisp romaine lettuce, parmesan cheese, and croutons, tossed with our homemade Caesar dressing.',
+        link: '#classic-caesar-salad',
+        price: '9.99',
       },
       {
         id: 3,
         title: 'Margherita Pizza',
-        content: 'A classic pizza with fresh mozzarella, tomatoes, basil, and our signature pizza sauce.',
-        link: '#margherita-pizza'
+        description: 'A classic pizza with fresh mozzarella, tomatoes, basil, and our signature pizza sauce.',
+        link: '#margherita-pizza',
+        price: '9.99',
+      },
+      {
+        id: 4,
+        title: 'Cheese Pizza',
+        description: 'A classic pizza with fresh cheese and our signature pizza sauce.',
+        link: '#cheese-pizza',
+        price: '9.99',
       },
     ],
   },
