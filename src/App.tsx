@@ -5,7 +5,7 @@ import {
   Route,
   Link,
 } from 'react-router-dom';
-import './App.css'; // Assuming you have some basic styles
+import './App.css';
 
 const Home = () => <div>Home Section</div>;
 const About = () => <div>About Section</div>;
