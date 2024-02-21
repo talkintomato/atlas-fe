@@ -1,16 +1,16 @@
-# Menu Page Project with GraphQL
+# Atlas FE page
 
 ## Overview
 
-This project showcases a single-page application that displays a dynamic menu interfacing with a GraphQL endpoint. Developed using React.js, TypeScript, and Apollo Client, it demonstrates a modern approach to building responsive and interactive web applications. The project leverages Tailwind CSS for styling and Framer Motion for smooth animations, offering a polished user experience. It's deployed and accessible, providing a live demonstration of the capabilities and integration of these technologies.
+This project showcases a single-page application with a dynamic menu interfacing with a GraphQL endpoint. Developed using React.js, TypeScript, and Apollo Client, it demonstrates a modern approach to building responsive and interactive web applications. The project leverages Tailwind CSS for styling and Framer Motion for smooth animations, offering a polished user experience. It's deployed and accessible, providing a live demonstration of the capabilities and integration of these technologies. It is backend can be found at https://github.com/talkintomato/Atlas with the branch frontend-compatible
 
 ### Technologies Used
 
-- **React.js with TypeScript**: for building a robust and scalable frontend.
-- **Vite**: as the fast and efficient build tool.
-- **Apollo Client**: for managing GraphQL operations and state management.
-- **Tailwind CSS**: for utility-first styling.
-- **Framer Motion**: for adding engaging animations.
+- **React.js with TypeScript**
+- **Vite**
+- **Apollo Client**
+- **Tailwind CSS**
+- **Framer Motion**
 
 ## Features
 
@@ -37,16 +37,16 @@ This project showcases a single-page application that displays a dynamic menu in
 ## Reflections
 
 ### Challenges Faced
-Work needed to be done on the backend to accomodate for DisplayOrder and link queries. These were not done previously in the inital backend deployment. 
+Work needed to be done on the backend to accommodate for DisplayOrder and link queries. These were not done previously in the initial backend deployment. 
 
 ### Further Improvements
 **Redux for State Persistence**
 Integrating Redux for state management can significantly enhance the application's scalability and maintainability. Redux provides a centralized store for all the states in your application, making state management more predictable and easier to debug. By leveraging Redux in combination with Apollo Client, we can ensure that the UI components render a consistent state across all parts of the application, even in complex scenarios with deep nested components.
 
-For state persistence, Redux Persist can be incorporated to persist and rehydrate the Redux store. This is particularly useful in scenarios where the application needs to maintain state after a page reload or when navigating between pages. For instance, user session data or the state of the application before the user left can be restored seamlessly, improving user experience.
+Redux Persist can be incorporated to persist and rehydrate the Redux store for state persistence. This is particularly useful in scenarios where the application needs to maintain its state after a page reload or when navigating between pages. For instance, user session data or the state of the application before the user leaves can be restored seamlessly, improving user experience.
 
 **Refactor Custom Button - Easier Changes, Better Tracking**
-Refactoring the custom button component to allow for easier changes and better tracking can significantly improve the development process by making the component more reusable and maintainable. This involves creating a flexible and extensible button component that can adapt to various use cases through props, such as different sizes, colors, loading states, and icons.
+Refactoring the custom button component to allow for easier changes and better tracking can significantly improve the development process by making the component more reusable and maintainable. This involves creating a flexible and extensible button component that can adapt to various use cases through props, such as different sizes, colours, loading states, and icons.
 
 **Mobile Responsiveness**
-The current implementation of Nav Bar is not optimal for mobile devices, adding a drawer that dynamically renders based a screen size can be added to support a better mobile experience. 
+The current implementation of Nav Bar is not optimal for mobile devices, adding a drawer that dynamically renders based on a screen size can be added to support a better mobile experience. 
