@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Section from './components/Section';
 import { useQuery } from '@apollo/client';
 import { GET_MENU_QUERY, MenuData, MenuVars } from './graphql/queries'; // Adjust the import path as necessary
@@ -59,15 +59,25 @@ import { GET_MENU_QUERY, MenuData, MenuVars } from './graphql/queries'; // Adjus
 
 const App: React.FC = () => {
   const { loading, error, data } = useQuery<MenuData, MenuVars>(GET_MENU_QUERY, {
-    // Possibly store in ENV file depending on desired behaviour else dynamically select first menu
     variables: { id: "969c233a-7a9e-4806-a432-2ca87ba521b7" },
   });
 
-  const menuSections = data?.menu.sections ?? [];
-  const [activeSection, setActiveSection] = useState<string>(menuSections.length > 0 ? menuSections[0].id : '');
+  // Memoize menuSections to only recalculate when data?.menu.sections changes
+  const menuSections = useMemo(() => data?.menu.sections ?? [], [data?.menu.sections]);
+
+  // Initial active section state is set to the first section's id if available
+  const [activeSection, setActiveSection] = useState<string>('');
+
+  // Update activeSection state when menuSections data is valid and available
+  // This effect runs only once when menuSections is first loaded
+  useEffect(() => {
+    if (menuSections.length > 0) {
+      setActiveSection(menuSections[0].id);
+    }
+  }, [menuSections]);
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error </p>;
+  if (error) return <p>Error: {error.message}</p>;
 
   const scrollToSection = (id: string): void => {
     const section = document.getElementById(id);
