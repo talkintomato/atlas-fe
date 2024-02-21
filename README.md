@@ -17,7 +17,7 @@ This project showcases a single-page application that displays a dynamic menu in
 - **Dynamic Menu Display**: Fetches and presents menu sections, sub-sections, and products according to their `display order` from a GraphQL endpoint.
 - **Product Details Modal**: Interactive modals for product details, animated with Framer Motion for a smooth user experience.
 - **Responsive Design**: Utilizes Tailwind CSS for a responsive layout that adapts to various screen sizes.
-- **Live Deployment**: The project is deployed to a live URL for immediate access and review.
+- **Live Deployment**: The project is deployed on Render @ https://atlas-fe.onrender.com/
 
 ## Getting Started
 
@@ -34,6 +34,7 @@ This project showcases a single-page application that displays a dynamic menu in
 3. npm install
 4. npm run dev
 
+## Reflections
 
 ### Challenges Faced
 Work needed to be done on the backend to accomodate for DisplayOrder and link queries. These were not done previously in the inital backend deployment. 
