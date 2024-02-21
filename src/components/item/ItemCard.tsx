@@ -5,12 +5,18 @@ import { MenuItem } from '../../graphql/queries';
 
 interface MenuItemComponentProps {
     item: MenuItem;
-  }
+}
 
-const ItemCard: React.FC<MenuItemComponentProps> = ({item}) => {
-    const {  label, description, link, price } = item
+const ItemCard: React.FC<MenuItemComponentProps> = ({ item }) => {
+    const { label, description, link, price, isAvailable } = item
     const [isDialogOpen, setIsDialogOpen] = useState(false);
-
+    const buttonClass = item.isAvailable ? "bg-secondary text-white px-4 py-2 rounded hover:bg-secondaryHover" : "bg-secondary bg-opacity-50 text-white px-4 py-2 rounded cursor-default";
+    const addButtonAction = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.stopPropagation(); // Prevents the event from propagating up to the div click handler
+        if (isAvailable) {
+            alert("Added!");
+        }
+    };
     const toggleDialog = () => setIsDialogOpen(!isDialogOpen);
 
     return (
@@ -39,8 +45,8 @@ const ItemCard: React.FC<MenuItemComponentProps> = ({item}) => {
                 <div className="flex justify-between items-center mt-5">
                     <p>{price}</p>
                     <button
-                        onClick={(e) => { e.stopPropagation(); alert("Added!"); }}
-                        className="bg-secondary text-white px-4 py-2 rounded hover:bg-secondaryHover"
+                        onClick={addButtonAction}
+                        className={buttonClass}
                     >
                         Add
                     </button>
