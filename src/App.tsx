@@ -1,10 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
 import Section from './components/Section';
 import { useQuery } from '@apollo/client';
-import { GET_MENU_QUERY, MenuData, MenuVars } from './graphql/queries'; // Adjust the import path as necessary
+import { GET_MENU_QUERY, MenuData, MenuVars } from './graphql/queries';
 
 const App: React.FC = () => {
   const { loading, error, data } = useQuery<MenuData, MenuVars>(GET_MENU_QUERY, {
+    // Impovement: load Dynamically through ENV or maybe a backend call
     variables: { id: "969c233a-7a9e-4806-a432-2ca87ba521b7" },
   });
 
@@ -40,7 +41,7 @@ const App: React.FC = () => {
         <div className="sticky top-0 h-screen pt-10 overflow-y-auto w-64">
           <nav>
             <ul>
-              {menuSections.map((section) => (
+              {menuSections.slice().sort((a, b) => a.displayOrder - b.displayOrder).map((section) => (
                 <li key={section.id}>
                   <button
                     onClick={() => scrollToSection(section.id)}
