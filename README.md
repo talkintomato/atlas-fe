@@ -48,3 +48,5 @@ For state persistence, Redux Persist can be incorporated to persist and rehydrat
 **Refactor Custom Button - Easier Changes, Better Tracking**
 Refactoring the custom button component to allow for easier changes and better tracking can significantly improve the development process by making the component more reusable and maintainable. This involves creating a flexible and extensible button component that can adapt to various use cases through props, such as different sizes, colors, loading states, and icons.
 
+**Mobile Responsiveness**
+The current implementation of Nav Bar is not optimal for mobile devices, adding a drawer that dynamically renders based a screen size can be added to support a better mobile experience. 

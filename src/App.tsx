@@ -42,7 +42,7 @@ const App: React.FC = () => {
           <nav>
             <ul>
               {menuSections.slice().sort((a, b) => a.displayOrder - b.displayOrder).map((section) => (
-                <li key={section.id}>
+                <li key={section.id + '-list'}>
                   <button
                     onClick={() => scrollToSection(section.id)}
                     className={`block p-2 w-full text-left border-l-4 ${activeSection === section.id ? 'border-orange-500' : 'border-gray-100'}`}
