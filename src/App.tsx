@@ -1,62 +1,73 @@
 import { useState } from 'react';
 import Section from './components/Section';
+import { useQuery } from '@apollo/client';
+import { GET_MENU_QUERY, MenuData, MenuVars } from './graphql/queries'; // Adjust the import path as necessary
 
-const menuSections = [
-  {
-    id: 'featured-dishes',
-    label: 'Featured Dishes',
-    description: 'A selection of our most popular dishes, crafted with the finest ingredients.',
-    items: [
-      {
-        id: 1,
-        title: 'Salmon Teriyaki',
-        description: 'Grilled salmon fillet glazed with a sweet teriyaki sauce, served with steamed rice and vegetables.',
-        link: "https://mrskueh.com/assets/images/atlas-core-active-storage/j5bx6bbznlcyp2atcim99gg59voh",
-        price: '9.99',
-      },
-      {
-        id: 2,
-        title: 'Classic Caesar Salad',
-        description: 'Crisp romaine lettuce, parmesan cheese, and croutons, tossed with our homemade Caesar dressing.',
-        link: "https://mrskueh.com/assets/images/atlas-core-active-storage/j5bx6bbznlcyp2atcim99gg59voh",
-        price: '9.99',
-      },
-      {
-        id: 3,
-        title: 'Margherita Pizza',
-        description: 'A classic pizza with fresh mozzarella, tomatoes, basil, and our signature pizza sauce.',
-        link: "https://mrskueh.com/assets/images/atlas-core-active-storage/j5bx6bbznlcyp2atcim99gg59voh",
-        price: '9.99',
-      },
-      {
-        id: 4,
-        title: 'Cheese Pizza',
-        description: 'A classic pizza with fresh cheese and our signature pizza sauce.',
-        link: "https://mrskueh.com/assets/images/atlas-core-active-storage/j5bx6bbznlcyp2atcim99gg59voh",
-        price: '9.99',
-      },
-    ],
-  },
-  {
-    id: 'appetizers',
-    label: 'Appetizers',
-    description: 'Start your meal with our exquisite appetizers.',
-    items: [
-      // Appetizers items here
-    ],
-  },
-  {
-    id: 'mains',
-    label: 'Mains',
-    description: 'Our main courses are designed to satisfy your hunger with the best ingredients.',
-    items: [
-      // Main courses items here
-    ],
-  },
-];
+// const menuSections = [
+//   {
+//     id: 'featured-dishes',
+//     label: 'Featured Dishes',
+//     description: 'A selection of our most popular dishes, crafted with the finest ingredients.',
+//     items: [
+//       {
+//         id: 1,
+//         title: 'Salmon Teriyaki',
+//         description: 'Grilled salmon fillet glazed with a sweet teriyaki sauce, served with steamed rice and vegetables.',
+//         link: "https://mrskueh.com/assets/images/atlas-core-active-storage/j5bx6bbznlcyp2atcim99gg59voh",
+//         price: '9.99',
+//       },
+//       {
+//         id: 2,
+//         title: 'Classic Caesar Salad',
+//         description: 'Crisp romaine lettuce, parmesan cheese, and croutons, tossed with our homemade Caesar dressing.',
+//         link: "https://mrskueh.com/assets/images/atlas-core-active-storage/j5bx6bbznlcyp2atcim99gg59voh",
+//         price: '9.99',
+//       },
+//       {
+//         id: 3,
+//         title: 'Margherita Pizza',
+//         description: 'A classic pizza with fresh mozzarella, tomatoes, basil, and our signature pizza sauce.',
+//         link: "https://mrskueh.com/assets/images/atlas-core-active-storage/j5bx6bbznlcyp2atcim99gg59voh",
+//         price: '9.99',
+//       },
+//       {
+//         id: 4,
+//         title: 'Cheese Pizza',
+//         description: 'A classic pizza with fresh cheese and our signature pizza sauce.',
+//         link: "https://mrskueh.com/assets/images/atlas-core-active-storage/j5bx6bbznlcyp2atcim99gg59voh",
+//         price: '9.99',
+//       },
+//     ],
+//   },
+//   {
+//     id: 'appetizers',
+//     label: 'Appetizers',
+//     description: 'Start your meal with our exquisite appetizers.',
+//     items: [
+//       // Appetizers items here
+//     ],
+//   },
+//   {
+//     id: 'mains',
+//     label: 'Mains',
+//     description: 'Our main courses are designed to satisfy your hunger with the best ingredients.',
+//     items: [
+//       // Main courses items here
+//     ],
+//   },
+// ];
 
 const App: React.FC = () => {
-  const [activeSection, setActiveSection] = useState<string>(menuSections[0].id);
+  const { loading, error, data } = useQuery<MenuData, MenuVars>(GET_MENU_QUERY, {
+    // Possibly store in ENV file depending on desired behaviour else dynamically select first menu
+    variables: { id: "969c233a-7a9e-4806-a432-2ca87ba521b7" },
+  });
+
+  const menuSections = data?.menu.sections ?? [];
+  const [activeSection, setActiveSection] = useState<string>(menuSections.length > 0 ? menuSections[0].id : '');
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error </p>;
 
   const scrollToSection = (id: string): void => {
     const section = document.getElementById(id);
@@ -92,10 +103,7 @@ const App: React.FC = () => {
           {menuSections.map((section) => (
             <Section
               key={section.id}
-              id={section.id}
-              label={section.label}
-              description={section.description}
-              items={section.items}
+              {...section}
             />
           ))}
         </div>

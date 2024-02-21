@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import ItemDialog from './ItemDialog';
+import { MenuItem } from '../../graphql/queries';
 
-export interface ItemProps {
-    id: number;
-    title: string;
-    description: string;
-    link: string;
-    price: string;
-}
+interface MenuItemComponentProps {
+    item: MenuItem;
+  }
 
-const ItemCard: React.FC<ItemProps> = ({ title, description, link, price, id }) => {
+const ItemCard: React.FC<MenuItemComponentProps> = ({item}) => {
+    const {  label, description, link, price } = item
     const [isDialogOpen, setIsDialogOpen] = useState(false);
 
     const toggleDialog = () => setIsDialogOpen(!isDialogOpen);
@@ -36,7 +34,7 @@ const ItemCard: React.FC<ItemProps> = ({ title, description, link, price, id }) 
             </motion.div>
 
             <div className="flex flex-col justify-between flex-grow p-4">
-                <h3 className="font-semibold text-lg mb-3">{title}</h3>
+                <h3 className="font-semibold text-lg mb-3">{label}</h3>
                 <p className="flex-grow">{description}</p>
                 <div className="flex justify-between items-center mt-5">
                     <p>{price}</p>
@@ -48,7 +46,7 @@ const ItemCard: React.FC<ItemProps> = ({ title, description, link, price, id }) 
                     </button>
                 </div>
             </div>
-            <ItemDialog isOpen={isDialogOpen} onClose={toggleDialog} item={{ id, title, description, link, price }} />
+            <ItemDialog isOpen={isDialogOpen} onClose={toggleDialog} item={item} />
         </div>
     );
 };

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { ItemProps } from './ItemCard'; // Ensure this import matches the location of your ItemProps
+import { MenuItem } from '../../graphql/queries';
 
 interface DialogProps {
   isOpen: boolean;
   onClose: () => void;
-  item: ItemProps;
+  item: MenuItem;
 }
 
 const Dialog: React.FC<DialogProps> = ({ isOpen, onClose, item }) => {
@@ -43,16 +43,16 @@ const Dialog: React.FC<DialogProps> = ({ isOpen, onClose, item }) => {
 
   return ReactDOM.createPortal(
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50" onClick={onClose}>
-      <div className="bg-white rounded-lg relative flex overflow-hidden" onClick={handleDialogClick} style={{ width: '90%', maxWidth: '1200px' }}>
+      <div className="bg-white lg relative flex overflow-hidden" onClick={handleDialogClick} style={{ width: '90%', maxWidth: '1200px' }}>
         {/* Image Section */}
         <div className="flex-none w-full md:w-1/2 h-full">
-          <img src={item.link} alt={item.title} className="w-full h-full object-cover" />
+          <img src={item.link} alt={item.label} className="w-full h-full object-cover" />
         </div>
 
         {/* Content Section */}
         <div className="flex-1 flex flex-col">
           <div className="p-4 flex-1">
-            <h2 className="text-xl font-bold mb-2">{item.title}</h2>
+            <h2 className="text-xl font-bold mb-2">{item.label}</h2>
             <p className="mb-4">{item.description}</p>
           </div>
           {/* Improvement - Item Modifiers Section */}
