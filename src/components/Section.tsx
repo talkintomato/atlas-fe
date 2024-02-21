@@ -7,11 +7,11 @@ const Section: React.FC<MenuSection> = ({ id, label, description, items, isAvail
   const childClass = isAvailable ? '' : 'opacity-50 pointer-events-none';
 
   return (
-    <section id={id} className="mb-8 p-10">
+    <section key={id} id={id} className="mb-8 p-10">
       <h2 className={`text-2xl font-bold mb-4 ${childClass}`}>{label}</h2>
       <p className={`mb-6 ${childClass}`}>{description}</p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {items.map((item) => (
+        {items.slice().sort((a, b) => a.displayOrder - b.displayOrder).map((item) => (
           // Apply the conditional class to each ItemCard as well
           <div className={childClass}>
             <ItemCard key={item.id} item={item} />

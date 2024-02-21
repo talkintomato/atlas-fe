@@ -11,6 +11,7 @@ export const GET_MENU_QUERY = gql`
         label
         isAvailable
         description
+        displayOrder
         items {
           id
           label
@@ -18,6 +19,7 @@ export const GET_MENU_QUERY = gql`
           link
           description
           price
+          displayOrder
         }
       }
     }
@@ -30,7 +32,8 @@ export interface MenuItem {
   isAvailable: boolean;
   link: string;
   description: string;
-  price?: string;
+  price: string;
+  displayOrder: number;
 }
 
 export interface MenuSection {
@@ -39,6 +42,7 @@ export interface MenuSection {
   isAvailable: boolean;
   description: string;
   items: MenuItem[]; 
+  displayOrder: number;
 }
 
 export interface MenuData {

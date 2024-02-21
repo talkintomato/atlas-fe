@@ -110,7 +110,7 @@ const App: React.FC = () => {
 
         {/* Scrollable Main Content */}
         <div className="flex-1 overflow-y-auto">
-          {menuSections.map((section) => (
+          {menuSections.slice().sort((a, b) => a.displayOrder - b.displayOrder).map((section) => (
             <Section
               key={section.id}
               {...section}
