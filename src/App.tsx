@@ -88,7 +88,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center min-h-screen bg-gray-50">
+    <div className="flex justify-center min-h-screen bg-custom-bg">
       <div className="flex w-full max-w-screen-xl">
         {/* Sticky Sidebar */}
         <div className="sticky top-0 h-screen pt-10 overflow-y-auto w-64">

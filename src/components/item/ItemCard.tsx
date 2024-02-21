@@ -43,7 +43,7 @@ const ItemCard: React.FC<MenuItemComponentProps> = ({ item }) => {
                 <h3 className="font-semibold text-lg mb-3">{label}</h3>
                 <p className="flex-grow">{description}</p>
                 <div className="flex justify-between items-center mt-5">
-                    <p>{price}</p>
+                    <p> ${price}</p>
                     <button
                         onClick={addButtonAction}
                         className={buttonClass}
