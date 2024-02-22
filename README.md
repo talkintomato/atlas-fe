@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project showcases a single-page application with a dynamic menu interfacing with a GraphQL endpoint. Developed using React.js, TypeScript, and Apollo Client, it demonstrates a modern approach to building responsive and interactive web applications. The project leverages Tailwind CSS for styling and Framer Motion for smooth animations, offering a polished user experience. It's deployed and accessible, providing a live demonstration of the capabilities and integration of these technologies. It is backend can be found at https://github.com/talkintomato/Atlas with the branch frontend-compatible
+This project showcases a single-page application with a dynamic menu interfacing with a GraphQL endpoint. Developed using React.js, TypeScript, and Apollo Client, it demonstrates a modern approach to building responsive and interactive web applications. The project leverages Tailwind CSS for styling and Framer Motion for smooth animations, offering a polished user experience. It's deployed and accessible, providing a live demonstration of the capabilities and integration of these technologies. The backend can be found at https://github.com/talkintomato/Atlas with the branch frontend-compatible
 
 ### Technologies Used
 
